@@ -1,5 +1,7 @@
+class wordpress {
 #sudo apt update
 exec {'apt update':
+ path => "/usr/bin",
  command => sudo apt update,
 }
 
@@ -8,7 +10,7 @@ package {"apache2":
  ensure => present,
 }
 
-sudo service apache2 start
+#sudo service apache2 start
 service {"apache2":
  ensure => start,
 }
@@ -55,22 +57,23 @@ exec {'unzip latest.zip':
  command => sudo unzip /tmp/latest.zip -d /var/www/html
 }
 
-wget https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php
-sudo cp wp-config-sample.php /var/www/html/wordpress/wp-config.php
+#wget https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php
+#sudo cp wp-config-sample.php /var/www/html/wordpress/wp-config.php
 exec {"wget https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php":
  path => "/usr/bin",
  cwd =>"/var/www/html/wordpress/wp-config.php",
 }
 
-sudo chmod -R 775 /var/www/html/wordpress
-sudo chown -R www-data:www-data /var/www/html/wordpress
+#sudo chmod -R 775 /var/www/html/wordpress
+#sudo chown -R www-data:www-data /var/www/html/wordpress
 file {'/var/www/html/wordpress':
  mode => '775'
  owner => 'www-data'
  group => 'www-data'
 }
 
-sudo service apache2 restart
+#sudo service apache2 restart
 service {"apache2":
  ensure :restart,
+}
 }
