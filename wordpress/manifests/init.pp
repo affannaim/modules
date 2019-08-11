@@ -1,4 +1,4 @@
-class wordpress {
+class wordpress (
 #sudo apt update
 exec {'apt update':
  path => "/usr/bin",
@@ -76,4 +76,4 @@ file {'/var/www/html/wordpress':
 service {"apache2":
  ensure :restart,
 }
-}
+)
