@@ -93,4 +93,12 @@ file {'/var/www/html/wordpress':
 exec {'exec apache2 restart':
  command => "/usr/sbin/service apache2 restart",
 }
+
+#service {"apache2":
+# ensure :restart,
 #}
+
+
+
+
+
